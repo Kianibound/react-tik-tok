@@ -10,9 +10,9 @@ const EndGame = ({ winCount, restartGame, player, draw, clearHistory }) => {
         {draw && <span className="win-text">DRAW GAME</span>}
 
         <span className="win-history">
-          X's WINS: {winCount.X}
+          "X" WINS: {winCount.X}
           <br />
-          O's WINS: {winCount.O}
+          "O" WINS: {winCount.O}
         </span>
 
         <button className="btn" onClick={restartGame}>

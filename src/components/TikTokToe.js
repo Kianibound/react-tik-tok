@@ -41,7 +41,6 @@ const TikTokToe = () => {
       ) {
         setGameFinished(true);
         setwinCount({ ...winCount, X: winCount.X + 1 });
-        console.log("X player won");
         return true;
       }
 
@@ -55,7 +54,6 @@ const TikTokToe = () => {
       ) {
         setGameFinished(true);
         setwinCount({ ...winCount, O: winCount.O + 1 });
-        console.log("O player won");
         return true;
       }
 
@@ -67,7 +65,6 @@ const TikTokToe = () => {
       ) {
         setGameFinished(true);
         setDraw(true);
-        console.log("Draw");
         return true;
       }
     }
@@ -107,9 +104,9 @@ const TikTokToe = () => {
   return (
     <div>
       <div className="winners-info">
-        <span> X's WINS: {winCount.X}</span>
+        <span>Player "X" WINS: {winCount.X}</span>
 
-        <span> O's WINS: {winCount.O}</span>
+        <span>Player "O" WINS: {winCount.O}</span>
       </div>
       {gameFinished && (
         <EndGame
@@ -121,6 +118,9 @@ const TikTokToe = () => {
         />
       )}
       <Square grid={grid} handleClick={handleClick} />
+      <h3 className="player-turn">{`${
+        player ? "Player X turns" : "Player O Turn"
+      }`}</h3>
     </div>
   );
 };
