@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Square from "./Square";
 import EndGame from "./EndGame";
 
@@ -86,7 +86,9 @@ const TikTokToe = () => {
     restartGame();
   };
   /////////////////////////////
-  isGameOver();
+  useEffect(() => {
+    isGameOver();
+  }, [grid]);
 
   const handleClick = (index) => {
     setGrid(
