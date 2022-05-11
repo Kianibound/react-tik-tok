@@ -1,19 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Square from "./Square";
 import EndGame from "./EndGame";
-import { isGameOver } from "./utils/utlis";
-
-//All winning situations
-const winCombination = [
-  [0, 1, 2],
-  [3, 4, 5],
-  [6, 7, 8],
-  [0, 3, 6],
-  [1, 4, 7],
-  [2, 5, 8],
-  [0, 4, 8],
-  [2, 4, 6],
-];
+import { isGameOver, winCombination } from "./utils/utlis";
 
 //initial value for the grid
 const INITIAL = "";
@@ -29,7 +17,6 @@ const TikTokToe = () => {
   const [draw, setDraw] = useState(false);
   const [winCount, setwinCount] = useState({ X: 0, O: 0 });
 
-  // Function to check if the game is finished and if it is, set the gameFinished state to true and set the winner or Draw (in useEffect)
   useEffect(() => {
     isGameOver(
       gameFinished,

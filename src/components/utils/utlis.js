@@ -1,3 +1,5 @@
+//  Function to check if the game is finished and if it is, set the gameFinished state to true and set the winner or Draw (in useEffect)
+
 export const isGameOver = (
   gameFinished,
   setGameFinished,
@@ -49,3 +51,15 @@ export const isGameOver = (
     }
   }
 };
+//All winning situations
+
+export const winCombination = [
+  [0, 1, 2],
+  [3, 4, 5],
+  [6, 7, 8],
+  [0, 3, 6],
+  [1, 4, 7],
+  [2, 5, 8],
+  [0, 4, 8],
+  [2, 4, 6],
+];
