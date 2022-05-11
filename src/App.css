@@ -29,6 +29,7 @@
   color: white;
   font-size: 4rem;
   border-radius: 1rem;
+  transition: all ease 0.9s;
 }
 
 .square:hover {
