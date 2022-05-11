@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Square from "./Square";
 import EndGame from "./EndGame";
+import { isGameOver } from "./utils/utlis";
 
 //All winning situations
 const winCombination = [
@@ -28,49 +29,21 @@ const TikTokToe = () => {
   const [draw, setDraw] = useState(false);
   const [winCount, setwinCount] = useState({ X: 0, O: 0 });
 
-  // Function to check if the game is finished and if it is, set the gameFinished state to true and set the winner or Draw
-  const isGameOver = () => {
-    if (!gameFinished) {
-      //check if the X player is won
-      if (
-        winCombination.some((combination) => {
-          return combination.every((index) => {
-            return grid[index] === X_PLAYER;
-          });
-        })
-      ) {
-        setGameFinished(true);
-        setwinCount({ ...winCount, X: winCount.X + 1 });
-        return true;
-      }
-
-      //Check if the O player is won
-      if (
-        winCombination.some((combination) => {
-          return combination.every((index) => {
-            return grid[index] === O_PLAYER;
-          });
-        })
-      ) {
-        setGameFinished(true);
-        setwinCount({ ...winCount, O: winCount.O + 1 });
-        return true;
-      }
-
-      //Check if the game is Draw
-      if (
-        grid.every((square) => {
-          return square !== INITIAL;
-        })
-      ) {
-        setGameFinished(true);
-        setDraw(true);
-        return true;
-      }
-    }
-  };
-  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+  // Function to check if the game is finished and if it is, set the gameFinished state to true and set the winner or Draw (in useEffect)
+  useEffect(() => {
+    isGameOver(
+      gameFinished,
+      setGameFinished,
+      setwinCount,
+      setDraw,
+      INITIAL,
+      winCombination,
+      grid,
+      X_PLAYER,
+      O_PLAYER,
+      winCount
+    );
+  }, [grid, gameFinished, winCount]);
   // Restart the Game Function
   const restartGame = () => {
     setGrid(Array(9).fill(INITIAL));
@@ -86,9 +59,6 @@ const TikTokToe = () => {
     restartGame();
   };
   /////////////////////////////
-  useEffect(() => {
-    isGameOver();
-  }, [grid]);
 
   const handleClick = (index) => {
     setGrid(
